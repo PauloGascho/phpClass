@@ -1,0 +1,32 @@
+COMANDOS BÁSICOS DO MySQL (com a ferramento Workbench)
+
+CTR+ENTER = executa a linha selecionada
+Raio: executa toda a página
+Raio com I: executa apenas a linha do cursor
+
+
+ *  Certificar/Selecionar o banco correto:
+USE db*nomedobanco;
+
+ *  Cria uma nova tabela simples:
+CREATE TABLE tb_*nomedatabela (
+id*nomedacolunaid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+des*nomedacoluna2 VARCHAR(64) NOT NULL,
+des*nomedacoluna3 VARCHAR(256) NOT NULL,
+dt*nomedacolunadata TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+ *  Insere novo item na tabela:
+INSERT INTO tb_*nomedatabela (des*nomedacoluna2, des*nomedacoluna3) VALUES('*valorcol2', 'valorcol3');
+
+ *  Query para consultar os itens da tabela:
+SELECT * FROM tb_*nomedatabela;
+
+ *  Alterar/Atualizar coluna *3 do item *1 da tabela:
+UPDATE tb_*nomedatabela SET des*nomedacoluna3 = *novovalor WHERE id*nomedacolunaid = *1;
+
+ *  Deletar item *1 da tabela: (Gera resquícios na tabela)
+DELETE FROM tb_*nomedatabela WHERE id*nomedacolunaid = *1;
+
+ *  Remove todos os itens da tabela sem resquícios: (Atenção! Dados inrecuperáveis!)
+TRUNCATE TABLE tb_*nomedatabela;
