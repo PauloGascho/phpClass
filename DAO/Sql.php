@@ -6,13 +6,13 @@ class Sql extends PDO {
 
 	//função para conexão com o banco de dados na instancia do objeto classe
 	public function __construct(){
-		$this->conn = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "");
+		$this->conn = new PDO("mysql:host=127.0.0.1;dbname=dbphp7", "root", "");
 	}
 
 	//executa método de setar parametros
 	private function setParams($statment, $parameters = array()){
 		foreach ($parameters as $key => $value) {
-			$statment->bindParam($key, $value);
+			$this->setParam($key, $value);
 		}
 	}
 
