@@ -1,7 +1,7 @@
 <?php
 
 require_once("config.php");
-require_once("Sql.php");
+
 
 $sql = new Sql();
 
