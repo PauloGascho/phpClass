@@ -49,6 +49,44 @@ class Usuario {
 			$this->setDtcadastro(new DateTime($row['dtcadastro']));
 		}
 	}
+
+	//lista com todos os usuários da tabela
+	public static function getList(){
+		$sql = new Sql();
+		return $sql -> select("SELECT * FROM tb_usuario ORDER BY deslogin;");
+	}
+
+	public static function search($login){
+		$sql = new Sql();
+		return $sql -> select("SELECT * FROM tb_usuario WHERE deslogin LIKE :SEARCH ORDER BY  deslogin", array(
+			':SEARCH'=>"%".$login."%"
+		));
+	}
+
+	//retorna dados do usuário autenticado
+	public function login($login, $password){
+		$sql = new Sql();
+
+		$results = $sql -> select("SELECT * FROM tb_usuario WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+			":LOGIN"=>$login,
+			":PASSWORD"=>$password
+		));
+
+		if (count($results)>0){
+			$row = $results[0];
+
+			$this->setIdsuario($row['idusuario']);
+			$this->setDeslogin($row['deslogin']);
+			$this->setDessenha($row['dessenha']);
+			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+		}
+		else {
+			throw new Exception("Login e/ou senha inválidos!");
+			
+		}
+	}
+
+	//retorna um json de um usuário
 	public function __toString(){
 		return json_encode(array(
 			"idusuario"=>$this->getIdusuario(),
