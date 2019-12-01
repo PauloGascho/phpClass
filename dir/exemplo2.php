@@ -19,10 +19,11 @@ foreach ($images as $img) {
 		//retorna data de última modificação
 		$info["modified"] = date("d/m/Y H:i:s", filemtime($filename));
 
+		//retorna informação da url do arquivo (str_replace inverte a /)
 		$info["url"] = "http://localhost/DIR/".str_replace("\\", "/", $filename);
 
 		//var_dump($info);
-
+		
 		array_push($data, $info);
 	}
 }
