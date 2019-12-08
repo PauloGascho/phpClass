@@ -1,11 +1,12 @@
 <?php
 
+//retorna um array de arquivos no diretório
 $images = scandir("images");
 
 $data = array();
 
 foreach ($images as $img) {
-
+	//inclui no array ( o que está procurando, o que não está procurando)
 	if (!in_array($img, array(".", ".."))) {
 
 		$filename = "images" . DIRECTORY_SEPARATOR . $img;
@@ -23,7 +24,6 @@ foreach ($images as $img) {
 		$info["url"] = "http://localhost/DIR/".str_replace("\\", "/", $filename);
 
 		//var_dump($info);
-		
 		array_push($data, $info);
 	}
 }
